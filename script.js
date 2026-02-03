@@ -1,52 +1,180 @@
 // Love Letter Content (customizable)
 const letterLines = [
-    "My Dearest Valentine,",
+    "My Dearest Yashvi,",
     "",
-    "From the moment you came into my life, every day has felt brighter, every moment more meaningful. You have this incredible way of making the ordinary feel extraordinary, and I find myself falling for you more with each passing day.",
+    "As I sit here writing this, I'm thinking about you just like I do every single day. I cannot explain how much you mean to me, but I'll try my best with these words.",
     "",
-    "Your smile lights up my darkest days, your laughter is the sweetest melody I've ever heard, and your presence brings a warmth to my heart that I never knew was possible. You make me want to be better, to dream bigger, and to love deeper.",
+    "From that special day on January 18th, 2021, when I asked you to be mine, my life changed forever. You said yes, and in that moment, I became the luckiest person alive. You are my high school love, my first true love, and the love I want to keep in my life forever.",
     "",
-    "This Valentine's Day, and every day after, I want you to know that you are cherished, you are adored, and you are deeply loved.",
+    "These past five years of long distance haven't been easy. Different time zones, countless missed hugs and kisses, saying goodbye on calls when I just want to hold you close it's been tough for both of us. But here we are, stronger than ever. And that strength? It comes from YOU.",
     "",
-    "Thank you for being exactly who you are, and for choosing to share your heart with me.",
+    "Your beautiful smile that makes my day amazing even if it's boring or too hectic, the way you talk to me, your lovely voice that gives me peace these the things I live for. You are the most wonderful and beautiful person, and loving you feels like coming home to where I belong.",
+    "",
+    "I am so proud and lucky that you are my Girlfriend. You are my comfort, my strength, my safe place, and my future. When I miss you, I stare at your pictures and our pictures and smile. You are the only one who I wouldn't mind losing sleep for, the one I can never get tired of talking to, the one who crosses my mind constantly throughout the day, the one who can make me smile without even trying.",
+    "",
+    "You have never given up on me, on us, on our love even when things got hard, even when the distance felt unbearable. Your patience, understanding, and loyalty are rare and beautiful. You held on when situations got tough, and you made me understand that our love for each other is permanent.",
+    "",
+    "Thank you for believing in me even when I doubt myself, for being exactly who you are, and for choosing to share your heart with me every single day. I promise to keep choosing you, just like you have always chosen me.",
+    "",
+    "This Valentine's Day, I want you to know: You are cherished, you are adored, and you are endlessly loved.",
+    "",
+    "Happy Valentine's Day, my beautiful girl. I love you to the moon and back, I love you 3000, I love you so much, I love you infinitely.",
     "",
     "Forever yours,",
-    "With all my love 💕"
+    "Parth 💕"
 ];
 
 // Love Reasons (customizable)
 const loveReasons = [
-    "Your beautiful smile that brightens my entire day",
-    "The way you laugh makes my heart skip a beat",
-    "How you always know exactly what to say to make me feel better",
-    "Your kindness and compassion toward everyone you meet",
-    "The way your eyes light up when you talk about things you love",
-    "How you make me feel safe and loved just by being near",
-    "Your incredible sense of humor that never fails to make me smile",
-    "The way you believe in me even when I doubt myself",
-    "How you turn ordinary moments into extraordinary memories",
-    "Your courage to always be authentically yourself",
-    "The way you listen when I need someone to talk to",
-    "How your presence makes any place feel like home",
-    "Your adorable quirks that make you uniquely you",
-    "The way you care about the little things that matter to me",
-    "How you inspire me to be a better person every day",
-    "Your beautiful heart that loves so deeply and genuinely",
-    "The way you make me feel like the luckiest person alive",
-    "How you find joy in the simple pleasures of life",
-    "Your strength and resilience through every challenge",
-    "The way you dance like nobody's watching",
-    "How you remember small details about things I've told you",
-    "Your passion for the things and people you care about",
-    "The way you make me feel understood and accepted",
-    "How you're not afraid to be vulnerable with me",
-    "Your incredible ability to see the good in people",
-    "The way you hold my hand and make everything feel right",
-    "How you challenge me to grow and see new perspectives",
-    "Your beautiful soul that shines through everything you do",
-    "The way you've changed my life in the most wonderful ways",
-    "How loving you feels like coming home to where I belong"
+    "Your beautiful smile that lights up my entire world, even across oceans and time zones",
+    "The way you've never given up on us, holding on through five years of long distance",
+    "How you make me feel like the most special person alive, just by being yourself",
+    "Your neverending talks make me feel important and loved, no matter how busy life gets",
+    "The way you gets annoyed when I tease you, it's the cutest thing ever",
+    "Your incredible strength and resilience - you turn tough goodbyes into hope for tomorrow",
+    "How talking to you never gets boring, no matter how long we've been together",
+    "The way you believe in our relationship even when situations get hard",
+    "Your patience and understanding that make this long distance bearable",
+    "How you're always in my mind constantly throughout the day, my safe place, my home and my future"
 ];
+
+// Quiz functionality
+let currentQuestion = 1;
+const totalQuestions = 3;
+const quizAnswers = {};
+
+// Question 1: Multiple Choice
+document.querySelectorAll('.quiz-option').forEach(option => {
+    option.addEventListener('click', function() {
+        // Disable all options
+        const allOptions = document.querySelectorAll('.quiz-option');
+        allOptions.forEach(opt => {
+            opt.style.pointerEvents = 'none';
+        });
+
+        const isCorrect = this.getAttribute('data-answer') === 'correct';
+        const feedback = document.getElementById('feedback-1');
+
+        if (isCorrect) {
+            this.classList.add('correct');
+            feedback.textContent = '✨ Perfect! You remember our special day! ✨';
+            feedback.classList.add('correct', 'show');
+            
+            // Save answer
+            quizAnswers.proposalDate = 'January 18, 2021';
+            
+            // Move to next question after delay
+            setTimeout(() => {
+                nextQuestion();
+            }, 2000);
+        } else {
+            this.classList.add('wrong');
+            feedback.textContent = '💕 Not quite, but I love that you\'re here with me!';
+            feedback.classList.add('wrong', 'show');
+            
+            // Show correct answer after a moment
+            setTimeout(() => {
+                document.querySelector('[data-answer="correct"]').classList.add('correct');
+                setTimeout(() => {
+                    quizAnswers.proposalDate = 'January 18, 2021';
+                    nextQuestion();
+                }, 2000);
+            }, 1500);
+        }
+    });
+});
+
+// Question 2: Best Memory
+const answer2Textarea = document.getElementById('answer-2');
+const charCount2 = document.getElementById('char-count-2');
+
+answer2Textarea.addEventListener('input', function() {
+    const currentLength = this.value.length;
+    charCount2.textContent = currentLength;
+    
+    if (currentLength > 450) {
+        charCount2.style.color = '#ff6b6b';
+    } else if (currentLength > 350) {
+        charCount2.style.color = '#ffd93d';
+    } else {
+        charCount2.style.color = '#666';
+    }
+});
+
+document.getElementById('form-2').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const answer = answer2Textarea.value.trim();
+    
+    if (answer) {
+        quizAnswers.bestMemory = answer;
+        localStorage.setItem('quiz-best-memory', answer);
+        nextQuestion();
+    }
+});
+
+// Question 3: Dream Destination
+const answer3Textarea = document.getElementById('answer-3');
+const charCount3 = document.getElementById('char-count-3');
+
+answer3Textarea.addEventListener('input', function() {
+    const currentLength = this.value.length;
+    charCount3.textContent = currentLength;
+    
+    if (currentLength > 450) {
+        charCount3.style.color = '#ff6b6b';
+    } else if (currentLength > 350) {
+        charCount3.style.color = '#ffd93d';
+    } else {
+        charCount3.style.color = '#666';
+    }
+});
+
+document.getElementById('form-3').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const answer = answer3Textarea.value.trim();
+    
+    if (answer) {
+        quizAnswers.dreamDestination = answer;
+        localStorage.setItem('quiz-dream-destination', answer);
+        
+        // Save all quiz data
+        localStorage.setItem('quiz-completed', 'true');
+        localStorage.setItem('quiz-all-answers', JSON.stringify(quizAnswers));
+        
+        // Move to valentine question with celebration
+        celebrateQuizCompletion();
+    }
+});
+
+function nextQuestion() {
+    const currentQ = document.getElementById(`question-${currentQuestion}`);
+    currentQuestion++;
+    
+    if (currentQuestion <= totalQuestions) {
+        const nextQ = document.getElementById(`question-${currentQuestion}`);
+        
+        // Update progress bar
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        progressFill.style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+        progressText.textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+        
+        // Animate transition
+        currentQ.classList.remove('active');
+        setTimeout(() => {
+            nextQ.classList.add('active');
+        }, 300);
+    }
+}
+
+function celebrateQuizCompletion() {
+    // Create celebration confetti
+    createConfetti();
+    
+    setTimeout(() => {
+        switchScreen('quiz-screen', 'initial-screen');
+    }, 1500);
+}
 
 // Create floating hearts
 function createHeart() {
@@ -141,8 +269,8 @@ noBtn.addEventListener('click', (e) => {
 yesBtn.addEventListener('click', function() {
     createConfetti();
     setTimeout(() => {
-        switchScreen('initial-screen', 'countdown-screen');
-        startCountdown();
+        switchScreen('initial-screen', 'letter-screen');
+        openLetterAnimation();
     }, 2000);
 });
 
@@ -163,40 +291,8 @@ function createConfetti() {
     }
 }
 
-// Countdown Timer
-function startCountdown() {
-    const valentinesDay = new Date('2026-02-14T00:00:00');
-    
-    function updateCountdown() {
-        const now = new Date();
-        const diff = valentinesDay - now;
-        
-        if (diff <= 0) {
-            openLetter();
-            return;
-        }
-        
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-}
-
-// Skip button
-document.getElementById('skip-btn').addEventListener('click', openLetter);
-
-// Open Love Letter
-function openLetter() {
-    switchScreen('countdown-screen', 'letter-screen');
+// Open Love Letter Animation
+function openLetterAnimation() {
     setTimeout(() => {
         document.getElementById('envelope-flap').classList.add('open');
         setTimeout(() => {
@@ -315,7 +411,10 @@ function loadJarProgress() {
         updateProgress();
         
         if (currentReasonIndex >= loveReasons.length) {
-            showFinalMessage();
+            // Show final message
+            document.getElementById('jar').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('final-message').style.display = 'block';
         }
     }
 }
@@ -372,7 +471,25 @@ document.getElementById('next-reason').addEventListener('click', function() {
     updateProgress();
     
     if (currentReasonIndex >= loveReasons.length) {
-        setTimeout(showFinalMessage, 500);
+        setTimeout(() => {
+            document.getElementById('jar').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('final-message').style.display = 'block';
+            
+            // Auto-download responses when she completes the jar
+            setTimeout(() => {
+                const hasResponses = localStorage.getItem('quiz-best-memory') || 
+                                   localStorage.getItem('quiz-dream-destination') || 
+                                   localStorage.getItem('valentine-feelings');
+                
+                if (hasResponses && !localStorage.getItem('auto-downloaded')) {
+                    if (confirm('🎉 Congratulations on completing the journey together!\n\n💾 Would you like to download all of Yashvi\'s responses as a keepsake?')) {
+                        downloadResponsesFile();
+                        localStorage.setItem('auto-downloaded', 'true');
+                    }
+                }
+            }, 2000);
+        }, 500);
     } else {
         // Return focus to jar
         jarElement.focus();
@@ -382,12 +499,6 @@ document.getElementById('next-reason').addEventListener('click', function() {
 function updateProgress() {
     const progressText = `${currentReasonIndex} of ${loveReasons.length} reasons revealed`;
     document.getElementById('progress').textContent = progressText;
-}
-
-function showFinalMessage() {
-    document.getElementById('jar').style.display = 'none';
-    document.getElementById('progress').style.display = 'none';
-    document.getElementById('final-message').style.display = 'block';
 }
 
 // Screen transitions
@@ -514,19 +625,218 @@ if (!document.getElementById('burst-animation-style')) {
 // View Comments Button
 document.getElementById('view-comments-btn').addEventListener('click', function() {
     const feelings = localStorage.getItem('valentine-feelings');
+    const bestMemory = localStorage.getItem('quiz-best-memory');
+    const dreamDestination = localStorage.getItem('quiz-dream-destination');
     const modal = document.getElementById('comments-modal');
     const commentsDiv = document.getElementById('saved-comments');
     
-    if (feelings) {
-        commentsDiv.innerHTML = `<p>${feelings}</p>`;
+    let content = '';
+    
+    if (bestMemory || dreamDestination || feelings) {
+        if (bestMemory) {
+            content += `<h3 style="color: #f5576c; margin-top: 0;">Best Memory Together:</h3><p>${bestMemory}</p><br>`;
+        }
+        if (dreamDestination) {
+            content += `<h3 style="color: #f5576c;">Dream Destination:</h3><p>${dreamDestination}</p><br>`;
+        }
+        if (feelings) {
+            content += `<h3 style="color: #f5576c;">Her Feelings:</h3><p>${feelings}</p>`;
+        }
+        commentsDiv.innerHTML = content;
     } else {
-        commentsDiv.innerHTML = '<p class="no-comments">No comments yet... She hasn\'t shared her feelings.</p>';
+        commentsDiv.innerHTML = '<p class="no-comments">No responses yet... She hasn\'t shared her thoughts.</p>';
     }
     
     modal.classList.add('show');
     
     // Focus on close button for accessibility
     document.getElementById('close-modal').focus();
+});
+
+// Download all responses as text file
+function downloadResponsesFile() {
+    const bestMemory = localStorage.getItem('quiz-best-memory');
+    const dreamDestination = localStorage.getItem('quiz-dream-destination');
+    const feelings = localStorage.getItem('valentine-feelings');
+    const revealedReasons = JSON.parse(localStorage.getItem('revealed-reasons') || '[]');
+    
+    if (!bestMemory && !dreamDestination && !feelings) {
+        alert('ℹ️ No responses to download yet!\n\nYashvi hasn\'t filled out any responses.');
+        return;
+    }
+    
+    // Get current date and time
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    const timeStr = now.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+    
+    // Build the text content
+    let content = '';
+    content += '═══════════════════════════════════════════════════════\n';
+    content += '          YASHVI\'S RESPONSES - VALENTINE\'S DAY 2026\n';
+    content += '═══════════════════════════════════════════════════════\n\n';
+    content += `Downloaded: ${dateStr} at ${timeStr}\n\n`;
+    content += '───────────────────────────────────────────────────────\n\n';
+    
+    // Quiz Question 1
+    content += '📅 QUESTION 1: When did I propose to you?\n';
+    content += '   Answer: January 18, 2021\n\n';
+    content += '───────────────────────────────────────────────────────\n\n';
+    
+    // Quiz Question 2
+    if (bestMemory) {
+        content += '💭 QUESTION 2: What is your best memory of me?\n\n';
+        content += wrapText(bestMemory, 60);
+        content += '\n\n───────────────────────────────────────────────────────\n\n';
+    }
+    
+    // Quiz Question 3
+    if (dreamDestination) {
+        content += '🌍 QUESTION 3: Where would you like to go with me?\n\n';
+        content += wrapText(dreamDestination, 60);
+        content += '\n\n───────────────────────────────────────────────────────\n\n';
+    }
+    
+    // Feelings
+    if (feelings) {
+        content += '💕 HER FEELINGS FOR ME:\n\n';
+        content += wrapText(feelings, 60);
+        content += '\n\n───────────────────────────────────────────────────────\n\n';
+    }
+    
+    // Jar progress
+    if (revealedReasons.length > 0) {
+        content += `🫙 JAR OF LOVE PROGRESS:\n`;
+        content += `   Revealed ${revealedReasons.length} out of 10 reasons\n\n`;
+        content += '───────────────────────────────────────────────────────\n\n';
+    }
+    
+    content += '\n';
+    content += '═══════════════════════════════════════════════════════\n';
+    content += '          These precious words will be treasured forever\n';
+    content += '                        With all my love ❤️\n';
+    content += '═══════════════════════════════════════════════════════\n';
+    
+    // Create and download the file
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    
+    // Format filename with date
+    const filename = `Yashvi_Responses_${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}.txt`;
+    link.download = filename;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+    
+    // Show success message
+    alert(`✅ File downloaded successfully!\n\nFilename: ${filename}\n\nCheck your downloads folder.`);
+}
+
+// Helper function to wrap text for better readability
+function wrapText(text, maxLength) {
+    const words = text.split(' ');
+    let lines = [];
+    let currentLine = '   '; // Indent
+    
+    words.forEach(word => {
+        if ((currentLine + word).length > maxLength) {
+            lines.push(currentLine);
+            currentLine = '   ' + word + ' ';
+        } else {
+            currentLine += word + ' ';
+        }
+    });
+    
+    if (currentLine.trim()) {
+        lines.push(currentLine);
+    }
+    
+    return lines.join('\n');
+}
+
+// Auto-download when jar is completed
+function showFinalMessage() {
+    document.getElementById('jar').style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    document.getElementById('final-message').style.display = 'block';
+    
+    // Auto-download responses when she completes the jar
+    setTimeout(() => {
+        const hasResponses = localStorage.getItem('quiz-best-memory') || 
+                           localStorage.getItem('quiz-dream-destination') || 
+                           localStorage.getItem('valentine-feelings');
+        
+        if (hasResponses && !localStorage.getItem('auto-downloaded')) {
+            if (confirm('🎉 Congratulations on completing the journey together!\n\n💾 Would you like to download all of Yashvi\'s responses as a keepsake?')) {
+                downloadResponsesFile();
+                localStorage.setItem('auto-downloaded', 'true');
+            }
+        }
+    }, 2000);
+}
+
+// Download button click handler
+document.getElementById('download-btn').addEventListener('click', downloadResponsesFile);
+
+// Restart jar button
+document.getElementById('restart-jar-btn').addEventListener('click', function() {
+    // Reset jar state
+    currentReasonIndex = 0;
+    revealedReasons = [];
+    localStorage.removeItem('revealed-reasons');
+    localStorage.removeItem('auto-downloaded');
+    
+    // Show jar again
+    document.getElementById('jar').style.display = 'block';
+    document.getElementById('progress').style.display = 'block';
+    document.getElementById('final-message').style.display = 'none';
+    
+    // Update progress
+    updateProgress();
+    
+    // Show success message
+    alert('🔄 Jar reset! You can now discover all the reasons again! 💕');
+});
+
+// Refresh/Start Over button
+document.getElementById('refresh-btn').addEventListener('click', function() {
+    const currentScreen = document.querySelector('.screen.active');
+    const screenId = currentScreen ? currentScreen.id : '';
+    
+    // If on quiz screen, just refresh
+    if (screenId === 'quiz-screen') {
+        if (confirm('🔄 Start the quiz over from the beginning?\n\nThis will refresh the page.')) {
+            location.reload();
+        }
+        return;
+    }
+    
+    // If they have data, warn them
+    const hasData = localStorage.getItem('quiz-best-memory') || 
+                   localStorage.getItem('quiz-dream-destination') || 
+                   localStorage.getItem('valentine-feelings') ||
+                   localStorage.getItem('revealed-reasons');
+    
+    if (hasData) {
+        if (confirm('🔄 Start over from the very beginning?\n\n⚠️ This will keep your saved responses but restart the experience.\n\nContinue?')) {
+            location.reload();
+        }
+    } else {
+        if (confirm('🔄 Restart the experience?')) {
+            location.reload();
+        }
+    }
 });
 
 // Close Modal - Click and Keyboard
@@ -562,8 +872,10 @@ document.addEventListener('keydown', function(e) {
 // Reset Button
 document.getElementById('reset-btn').addEventListener('click', function() {
     const feelings = localStorage.getItem('valentine-feelings');
+    const bestMemory = localStorage.getItem('quiz-best-memory');
+    const dreamDestination = localStorage.getItem('quiz-dream-destination');
     const revealedCount = JSON.parse(localStorage.getItem('revealed-reasons') || '[]').length;
-    const hasData = feelings || revealedCount > 0;
+    const hasData = feelings || bestMemory || dreamDestination || revealedCount > 0;
     
     if (!hasData) {
         alert('ℹ️ No data to reset!');
@@ -571,6 +883,12 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     }
     
     let message = '⚠️ Reset ALL data?\n\nThis will delete:\n';
+    if (bestMemory) {
+        message += `• Quiz answer: Best memory\n`;
+    }
+    if (dreamDestination) {
+        message += `• Quiz answer: Dream destination\n`;
+    }
     if (feelings) {
         const preview = feelings.length > 50 ? feelings.substring(0, 50) + '...' : feelings;
         message += `• Her feelings: "${preview}"\n`;
@@ -578,12 +896,18 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     if (revealedCount > 0) {
         message += `• Jar progress (${revealedCount} reasons revealed)\n`;
     }
+    message += '\n⚠️ Make sure you\'ve downloaded her responses first!\n';
     message += '\nAre you ABSOLUTELY sure?';
     
     if (confirm(message)) {
         if (confirm('⚠️ Last chance! This cannot be undone!')) {
             localStorage.removeItem('valentine-feelings');
             localStorage.removeItem('revealed-reasons');
+            localStorage.removeItem('quiz-best-memory');
+            localStorage.removeItem('quiz-dream-destination');
+            localStorage.removeItem('quiz-completed');
+            localStorage.removeItem('quiz-all-answers');
+            localStorage.removeItem('auto-downloaded');
             alert('✅ All data has been cleared!\n\nRefreshing the page...');
             location.reload();
         }

@@ -15,6 +15,7 @@
     <!-- Admin Controls (Hidden) -->
     <div class="admin-controls" id="admin-controls" role="group" aria-label="Admin controls">
         <button class="admin-btn" id="view-comments-btn" title="View her comments" aria-label="View her feelings and comments">💌</button>
+        <button class="admin-btn" id="download-btn" title="Download all responses" aria-label="Download all her responses as text file">📥</button>
         <button class="admin-btn" id="reset-btn" title="Reset all data" aria-label="Reset all stored data">🔄</button>
     </div>
 
@@ -22,7 +23,7 @@
     <div class="modal" id="comments-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
         <div class="modal-content">
             <span class="close-modal" id="close-modal" role="button" aria-label="Close modal" tabindex="0">&times;</span>
-            <h2 id="modal-title">Her Feelings 💕</h2>
+            <h2 id="modal-title">Her Responses 💕</h2>
             <div class="saved-comments" id="saved-comments" role="region" aria-live="polite">
                 <p class="no-comments">No comments yet...</p>
             </div>
@@ -32,8 +33,84 @@
     <!-- Background Hearts -->
     <div class="hearts-container" id="hearts-container" aria-hidden="true"></div>
 
+    <!-- Quiz Screen -->
+    <div class="screen active" id="quiz-screen">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">Question 1 of 3</span>
+                </div>
+            </div>
+
+            <!-- Question 1: Multiple Choice -->
+            <div class="quiz-question active" id="question-1">
+                <h2 class="quiz-title">When did I propose to you? 💍</h2>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-answer="wrong">
+                        <span class="option-letter">A</span>
+                        <span class="option-text">December 25, 2020</span>
+                    </button>
+                    <button class="quiz-option" data-answer="correct">
+                        <span class="option-letter">B</span>
+                        <span class="option-text">January 18, 2021</span>
+                    </button>
+                    <button class="quiz-option" data-answer="wrong">
+                        <span class="option-letter">C</span>
+                        <span class="option-text">February 14, 2021</span>
+                    </button>
+                    <button class="quiz-option" data-answer="wrong">
+                        <span class="option-letter">D</span>
+                        <span class="option-text">March 8, 2021</span>
+                    </button>
+                </div>
+                <div class="quiz-feedback" id="feedback-1"></div>
+            </div>
+
+            <!-- Question 2: Open-ended -->
+            <div class="quiz-question" id="question-2">
+                <h2 class="quiz-title">What is your best memory of me? 💭</h2>
+                <p class="quiz-subtitle">Share your favorite moment we've had together...</p>
+                <form class="quiz-form" id="form-2">
+                    <textarea 
+                        class="quiz-textarea" 
+                        id="answer-2"
+                        placeholder="That time when we... ✨"
+                        required
+                        maxlength="500"
+                    ></textarea>
+                    <div class="char-counter">
+                        <span id="char-count-2">0</span> / 500 characters
+                    </div>
+                    <button type="submit" class="quiz-submit-btn">Continue 💕</button>
+                </form>
+            </div>
+
+            <!-- Question 3: Open-ended -->
+            <div class="quiz-question" id="question-3">
+                <h2 class="quiz-title">Where would you like to go with me? 🌍</h2>
+                <p class="quiz-subtitle">Tell me about a place you'd love us to visit together...</p>
+                <form class="quiz-form" id="form-3">
+                    <textarea 
+                        class="quiz-textarea" 
+                        id="answer-3"
+                        placeholder="I'd love for us to go to... 🗺️"
+                        required
+                        maxlength="500"
+                    ></textarea>
+                    <div class="char-counter">
+                        <span id="char-count-3">0</span> / 500 characters
+                    </div>
+                    <button type="submit" class="quiz-submit-btn">Continue 💕</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Initial Screen -->
-    <div class="screen active" id="initial-screen">
+    <div class="screen" id="initial-screen">
         <div class="question-container">
             <div class="name-reveal">
                 <span class="dear-text">Dear</span>
@@ -132,7 +209,7 @@
     <!-- Jar of Love Screen -->
     <div class="screen" id="jar-screen">
         <div class="jar-container">
-            <h2 class="jar-title">30 Reasons Why I Love You</h2>
+            <h2 class="jar-title">10 Reasons Why I Love You</h2>
             <p class="jar-instruction">Click the jar to reveal a reason 💕</p>
             <div class="jar" id="jar" role="button" aria-label="Click to reveal a reason why I love you" tabindex="0">
                 <div class="jar-sparkles" aria-hidden="true">
@@ -155,15 +232,16 @@
                     </div>
                 </div>
             </div>
-            <div class="progress-indicator" id="progress" role="status" aria-live="polite">0 of 30 reasons revealed</div>
+            <div class="progress-indicator" id="progress" role="status" aria-live="polite">0 of 10 reasons revealed</div>
             <div class="final-message" id="final-message" role="alert">
-                <p>💕 You've discovered all 30 reasons 💕</p>
+                <p>💕 You've discovered all 10 reasons 💕</p>
                 <p>But the truth is, there are infinite reasons why I love you.</p>
                 <p>Happy Valentine's Day, my love! 💖</p>
+                <button class="restart-btn" id="restart-jar-btn">See Reasons Again 🔄</button>
             </div>
         </div>
         <div class="note" id="note" role="dialog" aria-labelledby="note-number" aria-describedby="note-text">
-            <div class="note-number" id="note-number">Reason 1 of 30</div>
+            <div class="note-number" id="note-number">Reason 1 of 10</div>
             <div class="note-text" id="note-text"></div>
             <button class="next-reason-btn" id="next-reason" aria-label="Continue to next reason">Next Reason 💕</button>
         </div>
@@ -173,6 +251,11 @@
     <div class="privacy-notice" role="contentinfo" aria-label="Privacy information">
         💝 Your feelings are stored locally on your device only
     </div>
+
+    <!-- Refresh/Restart Button -->
+    <button class="refresh-btn" id="refresh-btn" title="Start over from beginning" aria-label="Restart experience">
+        🔄 Start Over
+    </button>
 
     <!-- Visually Hidden Skip Link for Screen Readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
