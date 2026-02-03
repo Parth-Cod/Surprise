@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Yashvi 💕 A Special Valentine's Message</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Music Control -->
+    <div class="music-control" id="music-control" title="Click to toggle music" role="button" aria-label="Toggle background music" tabindex="0">
+        🔇
+    </div>
+
+    <!-- Admin Controls (Hidden) -->
+    <div class="admin-controls" id="admin-controls" role="group" aria-label="Admin controls">
+        <button class="admin-btn" id="view-comments-btn" title="View her comments" aria-label="View her feelings and comments">💌</button>
+        <button class="admin-btn" id="reset-btn" title="Reset all data" aria-label="Reset all stored data">🔄</button>
+    </div>
+
+    <!-- Comments Modal -->
+    <div class="modal" id="comments-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal" role="button" aria-label="Close modal" tabindex="0">&times;</span>
+            <h2 id="modal-title">Her Feelings 💕</h2>
+            <div class="saved-comments" id="saved-comments" role="region" aria-live="polite">
+                <p class="no-comments">No comments yet...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Hearts -->
+    <div class="hearts-container" id="hearts-container" aria-hidden="true"></div>
+
+    <!-- Initial Screen -->
+    <div class="screen active" id="initial-screen">
+        <div class="question-container">
+            <div class="name-reveal">
+                <span class="dear-text">Dear</span>
+                <span class="name-text" id="name-text">Yashvi</span>
+            </div>
+            <div class="question-text" id="question-text">
+                <p class="question-line line-1">From the moment I met you,</p>
+                <p class="question-line line-2">my world became more beautiful.</p>
+                <p class="question-line line-3">Every smile, every laugh, every moment with you</p>
+                <p class="question-line line-4">makes my heart skip a beat.</p>
+                <p class="question-main">Will you be my Valentine? 💕</p>
+            </div>
+            <div class="buttons-container">
+                <button id="yes-btn" aria-label="Accept and be my Valentine">Yes! 💖</button>
+                <button id="no-btn" aria-label="Decline invitation">No</button>
+            </div>
+            <div class="decorative-hearts" aria-hidden="true">
+                <span class="deco-heart deco-1">💖</span>
+                <span class="deco-heart deco-2">💕</span>
+                <span class="deco-heart deco-3">💗</span>
+                <span class="deco-heart deco-4">💝</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div class="screen" id="countdown-screen">
+        <div class="countdown-container">
+            <div class="countdown-title">💕 We're Official! 💕</div>
+            <div class="countdown-subtitle">Counting down the days until Valentine's Day...</div>
+            <div class="countdown-timer" role="timer" aria-live="polite" aria-atomic="true">
+                <div class="time-unit">
+                    <span class="time-value" id="days" aria-label="days remaining">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="hours" aria-label="hours remaining">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="minutes" aria-label="minutes remaining">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="seconds" aria-label="seconds remaining">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+            <button class="skip-btn" id="skip-btn" aria-label="Skip countdown and continue to love letter">Skip to Love Letter ➜</button>
+        </div>
+    </div>
+
+    <!-- Love Letter Screen -->
+    <div class="screen" id="letter-screen">
+        <div class="envelope-container">
+            <div class="envelope" aria-hidden="true">
+                <div class="envelope-flap" id="envelope-flap"></div>
+                <div class="envelope-body"></div>
+            </div>
+            <div class="letter" id="letter" role="article" aria-label="Love letter">
+                <div class="letter-content" id="letter-content">
+                    <!-- Lines will be added dynamically by JavaScript -->
+                </div>
+                <button class="continue-btn" id="continue-from-letter" aria-label="Continue to share your feelings">Continue to Share Your Feelings ➜</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feelings Screen -->
+    <div class="screen" id="feelings-screen">
+        <div class="feelings-container">
+            <h2 class="feelings-title">Share Your Feelings With Me 💕</h2>
+            <form class="feelings-form" id="feelings-form">
+                <label for="feelings-text" class="visually-hidden">Share your feelings</label>
+                <textarea 
+                    id="feelings-text" 
+                    placeholder="Tell me what's in your heart... I can't wait to know how you feel 💖"
+                    required
+                    maxlength="1000"
+                    aria-describedby="char-counter-label"
+                ></textarea>
+                <div class="char-counter" id="char-counter">
+                    <span id="char-count" aria-live="polite">0</span>
+                    <span id="char-counter-label"> / 1000 characters</span>
+                </div>
+                <button type="submit" class="submit-btn" aria-label="Submit your feelings">Send My Feelings 💌</button>
+            </form>
+            <div class="thank-you-message" id="thank-you" role="alert" aria-live="polite">
+                <p>Thank you for sharing your heart with me 💕</p>
+                <p>Your words mean everything to me...</p>
+                <button class="continue-btn" id="continue-to-jar" style="margin-top: 30px;" aria-label="Continue to discover reasons why I love you">Discover Why I Love You ➜</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jar of Love Screen -->
+    <div class="screen" id="jar-screen">
+        <div class="jar-container">
+            <h2 class="jar-title">30 Reasons Why I Love You</h2>
+            <p class="jar-instruction">Click the jar to reveal a reason 💕</p>
+            <div class="jar" id="jar" role="button" aria-label="Click to reveal a reason why I love you" tabindex="0">
+                <div class="jar-sparkles" aria-hidden="true">
+                    <span class="sparkle sparkle-1">✨</span>
+                    <span class="sparkle sparkle-2">✨</span>
+                    <span class="sparkle sparkle-3">✨</span>
+                    <span class="sparkle sparkle-4">💫</span>
+                    <span class="sparkle sparkle-5">⭐</span>
+                </div>
+                <div class="jar-lid">
+                    <div class="lid-shine"></div>
+                </div>
+                <div class="jar-body">
+                    <div class="jar-label">Love Notes</div>
+                    <div class="jar-hearts" aria-hidden="true">
+                        <span class="jar-heart">💗</span>
+                        <span class="jar-heart">💝</span>
+                        <span class="jar-heart">💖</span>
+                        <span class="jar-heart">💕</span>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-indicator" id="progress" role="status" aria-live="polite">0 of 30 reasons revealed</div>
+            <div class="final-message" id="final-message" role="alert">
+                <p>💕 You've discovered all 30 reasons 💕</p>
+                <p>But the truth is, there are infinite reasons why I love you.</p>
+                <p>Happy Valentine's Day, my love! 💖</p>
+            </div>
+        </div>
+        <div class="note" id="note" role="dialog" aria-labelledby="note-number" aria-describedby="note-text">
+            <div class="note-number" id="note-number">Reason 1 of 30</div>
+            <div class="note-text" id="note-text"></div>
+            <button class="next-reason-btn" id="next-reason" aria-label="Continue to next reason">Next Reason 💕</button>
+        </div>
+    </div>
+
+    <!-- Privacy Notice -->
+    <div class="privacy-notice" role="contentinfo" aria-label="Privacy information">
+        💝 Your feelings are stored locally on your device only
+    </div>
+
+    <!-- Visually Hidden Skip Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
